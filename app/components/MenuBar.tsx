@@ -52,7 +52,7 @@ const MenuBar = ({
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex space-x-4 relative">
             {/* File Menu */}
-            <div className="relative" onMouseLeave={handleMouseLeave}>
+            <div className="relative" /* onMouseLeave={handleMouseLeave} */>
               <button
                 className={`px-3 py-2 hover:bg-gray-700 ${
                   activeMenu === 'file' ? 'bg-gray-700' : ''
@@ -92,7 +92,7 @@ const MenuBar = ({
             </div>
 
             {/* Edit Menu */}
-            <div className="relative" onMouseLeave={handleMouseLeave}>
+            <div className="relative" /* onMouseLeave={handleMouseLeave} */>
               <button
                 className={`px-3 py-2 hover:bg-gray-700 ${
                   activeMenu === 'edit' ? 'bg-gray-700' : ''
@@ -114,7 +114,7 @@ const MenuBar = ({
             </div>
 
             {/* View Menu */}
-            <div className="relative" onMouseLeave={handleMouseLeave}>
+            <div className="relative" /* onMouseLeave={handleMouseLeave} */>
               <button
                 className={`px-3 py-2 hover:bg-gray-700 ${
                   activeMenu === 'view' ? 'bg-gray-700' : ''
