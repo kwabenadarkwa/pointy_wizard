@@ -1,17 +1,62 @@
 'use client';
+import { useState, useCallback } from 'react';
+import {
+    ReactFlow,
+    Background,
+    applyNodeChanges,
+    applyEdgeChanges,
+    Controls,
+    BackgroundVariant,
+    type NodeChange,
+    type Node,
+    type Edge,
+    type EdgeChange,
+    type Connection,
+    addEdge,
+} from '@xyflow/react';
+import '@xyflow/react/dist/style.css';
+import BottomControlCenter from './_components/bottomControlCenter';
 
-import { ReactFlowProvider } from 'reactflow';
-import PipelineEditor from './components/PipelineEditor';
+const initialNodes: Node[] = [
+    { id: 'n1', position: { x: 0, y: 0 }, data: { label: 'Node 1' } },
+    { id: 'n2', position: { x: 0, y: 100 }, data: { label: 'Node 2' } },
+];
+const initialEdges = [{ id: 'n1-n2', source: 'n1', target: 'n2' }];
 
 export default function Home() {
-  return (
-    <ReactFlowProvider>
-      <main className="flex min-h-screen flex-col items-center p-4">
-        <h1 className="text-2xl font-bold mb-4">Pointy Pipeline Editor</h1>
-        <div className="w-full flex-1 border border-gray-200 rounded-lg">
-          <PipelineEditor />
+    const [nodes, setNodes] = useState(initialNodes);
+    const [edges, setEdges] = useState(initialEdges);
+
+    const onNodesChange = useCallback(
+        (changes: NodeChange<Node>[]) =>
+            setNodes((nodesSnapshot) => applyNodeChanges(changes, nodesSnapshot)),
+        []
+    );
+    const onEdgesChange = useCallback(
+        (changes: EdgeChange<Edge>[]) =>
+            setEdges((edgesSnapshot) => applyEdgeChanges(changes, edgesSnapshot)),
+        []
+    );
+    const onConnect = useCallback(
+        (params: Connection) =>
+            setEdges((edgesSnapshot) => addEdge(params, edgesSnapshot)),
+        []
+    );
+
+    return (
+        <div style={{ width: '100vw', height: '100vh' }}>
+            <ReactFlow
+                nodes={nodes}
+                edges={edges}
+                onNodesChange={onNodesChange}
+                onEdgesChange={onEdgesChange}
+                onConnect={onConnect}
+                fitView
+            >
+                <Background color="#ccc" variant={BackgroundVariant.Dots} />
+                <Controls/>
+                <BottomControlCenter/>
+            </ReactFlow>
         </div>
-      </main>
-    </ReactFlowProvider>
-  );
+    );
 }
