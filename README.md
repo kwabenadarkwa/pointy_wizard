@@ -26,7 +26,16 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 ## TODO
 
-- [ ] I have to think about how I'm going to be storing the node information for a particular pipeline. check out the useStore that is provided
+### Bottom Control Bar
+
+- [ ] create behaviour for the onEventClick
+- [ ] create behaviour for the onConnectionClick
+- [ ] create behaviour for the onExtrasClick
+
+### General Pipeline Editor TODO's
+
+- [ ] save functionality that saves the result of the pipeline onto the users pc or something of the sort. think of what format you want to save the results in. which means I'm going to have to have some zustand state management where I'm going to keep everything and then dump it into the json file.
+- [ ] I have to think about how I'm going to be storing the node information for a particular pipeline. check out the useStore that is provided. the behaviour of the bottom nav bar is tied to this in a way. maybe there's a way to make it less coupled
 - [ ] use the built in dark theme and light theme to provide a panel that the users can click to toggle light and dark mode
 - [ ] Thinking about how to delete a particular thing on the node, when creating the custom versions of the nodes, it might be useful to have like a delete thing that shows up beside the nodes and values and when clicked deletes the node
 - [ ] create a custom node that has the </Handle> on the right of it

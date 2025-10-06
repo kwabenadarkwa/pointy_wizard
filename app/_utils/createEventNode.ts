@@ -1,17 +1,18 @@
 import { type ReactFlowInstance } from '@xyflow/react';
 
-export const addNodeAtRandomLocation = (
+export const createEventNode = (
     reactFlowInstance: ReactFlowInstance,
-    id:string 
+    label: string,
+    id: string
 ) => {
     const newNode = {
         id,
         position: {
-            x: Math.random() * 500,
-            y: Math.random() * 500,
+            x: 0,
+            y: 10,
         },
         data: {
-            label: `Node ${id}`,
+            label: label,
         },
     };
     reactFlowInstance.addNodes(newNode);

@@ -14,13 +14,12 @@ import {
     addEdge,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
-import BottomControlCenter from './_components/bottomControlCenter';
-import { addNodeAtRandomLocation } from './_utils/addNodeAtRandomLocation';
+import BottomControlCenter from './_components/bottomControlCenter/bottomControlCenter';
+import { createEventNode } from './_utils/createEventNode';
 
 //TODO: this is going to be abstracted out to some form of storage that I'm yet to figure out
 const initialNodes: Node[] = [
     { id: 'n1', position: { x: 0, y: 0 }, data: { label: 'Node 1' } },
-    { id: 'n2', position: { x: 0, y: 100 }, data: { label: 'Node 2' } },
 ];
 const initialEdges = [{ id: 'n1-n2', source: 'n1', target: 'n2' }];
 
@@ -31,10 +30,13 @@ function Canvas() {
     let nodeId = 0;
     const reactFlowInstance = useReactFlow();
 
-    const onClick = useCallback(() => {
-        const id = `${++nodeId}`;
-        addNodeAtRandomLocation(reactFlowInstance, id);
-    }, [nodeId, reactFlowInstance]);
+    const onEventNameGiven = useCallback(
+        (name: string) => {
+            const id = `${++nodeId}`;
+            createEventNode(reactFlowInstance, name, id);
+        },
+        [nodeId, reactFlowInstance]
+    );
 
     const onConnect = useCallback(
         (params: Connection) =>
@@ -54,7 +56,13 @@ function Canvas() {
                 onConnect={onConnect}
                 fitView
             >
-                <BottomControlCenter onClickEvent={onClick} />
+                <BottomControlCenter
+                    actions={{
+                        onEventClick: onEventNameGiven,
+                        onConnectionClick: () => console.log('connection'),
+                        onExtrasClick: () => console.log('extras'),
+                    }}
+                />
                 <Background color="#ccc" variant={BackgroundVariant.Dots} />
                 <Controls />
             </ReactFlow>
