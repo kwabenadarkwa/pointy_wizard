@@ -9,6 +9,7 @@ import {
     useNodesState,
     useEdgesState,
     type Node,
+    type Edge,
     type Connection,
     useReactFlow,
     addEdge,
@@ -17,11 +18,8 @@ import '@xyflow/react/dist/style.css';
 import BottomControlCenter from './_components/bottomControlCenter/bottomControlCenter';
 import { createEventNode } from './_utils/createEventNode';
 
-//TODO: this is going to be abstracted out to some form of storage that I'm yet to figure out
-const initialNodes: Node[] = [
-    { id: 'n1', position: { x: 0, y: 0 }, data: { label: 'Node 1' } },
-];
-const initialEdges = [{ id: 'n1-n2', source: 'n1', target: 'n2' }];
+const initialNodes: Node[] = [];
+const initialEdges: Edge[] = [];
 
 function Canvas() {
     const [nodes, , onNodesChange] = useNodesState(initialNodes);
