@@ -43,7 +43,6 @@ function Canvas() {
     );
 
     return (
-        //TODO: in order to add custom edges and nodes I'd have to add an edgeTypes prop and a nodeTypes prop
         <div className="h-screen w-screen">
             <ReactFlow
                 colorMode="light"

@@ -1,29 +1,18 @@
-## Getting Started
+## Pointy Wizard
 
-First, run the development server:
+To check out the project, run the following command:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
 ## TO NOTE
 
 - the way nodes are created is by creating objects so I'm going to have to come up with a way to save the nodes that
   are created by the user for a particular pipeline.
 - I need a specific way to store nodes and edges for a particular pipeline.
-
 
 ## TODO
 
