@@ -16,12 +16,12 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## TODO
 
-- [ ] make it such that when the diamond is clicked the correct node is selected
 - [ ] create a global store that holds the node data in the memory of the browser
 - [ ] save functionality that saves the result of the pipeline onto the users pc or something of the sort. think of what format you want to save the results in. which means I'm going to have to have some zustand state management where I'm going to keep everything and then dump it into the json file.
 
 ### Done
 
+- [x] make it such that when the diamond is clicked the correct node is selected
 - [x] I have to think about what I'm going to be using to delete nodes that are created by the user
 - [x] create a custom node for the decision node
 - [x] the control pane that holds all the things you could select seems to be behing the canvas, think of how you can bring
