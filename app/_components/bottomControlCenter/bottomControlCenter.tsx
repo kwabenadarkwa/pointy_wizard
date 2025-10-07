@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { Panel } from '@xyflow/react';
 import { useState } from 'react';
 import EventCreationPopUp from './popups/eventCreationPopUp';
-import EventDropDown from './dropdowns/eventDropDown';
+import EventDropDown, { EventName } from './dropdowns/eventDropDown';
 
 interface BottomControlCenterProps {
     actions?: {
@@ -18,11 +18,15 @@ export default function BottomControlCenter({
     const [isEventCreationPopUpOpen, setIsEventCreationPopUpOpen] =
         useState(false);
     const [isEventDropDownOpen, setIsEventDropDownOpen] = useState(false);
+    const [selectedEventType, setSelectedEventType] = useState<EventName>(
+        EventName.DecisionNode
+    );
 
     const handleEventSubmit = (name: string) => {
         actions?.onEventClick?.(name);
         setIsEventCreationPopUpOpen(false);
     };
+    //TODO: selected event Type is what would determine what image that we show at the event section
 
     return (
         <div>
@@ -34,7 +38,11 @@ export default function BottomControlCenter({
             )}
 
             {isEventDropDownOpen && (
-                <EventDropDown className="flex flex-col gap-2 text-xs pb-15 rounded bg-[#ebefff] px-3" />
+                <EventDropDown
+                    className="flex flex-col gap-2 text-xs pb-15 rounded bg-[#ebefff] px-2 py-2"
+                    eventSelected={selectedEventType}
+                    setEventSelectedOnBottomControlPanel={setSelectedEventType}
+                />
             )}
 
             <Panel
@@ -44,7 +52,11 @@ export default function BottomControlCenter({
                 <div className="">
                     <div className="flex flex-horizontal">
                         <Image
-                            src="/event.svg"
+                            src={
+                                selectedEventType === EventName.DefaultEvent
+                                    ? '/event.svg'
+                                    : '/decisionTree.svg'
+                            }
                             width={32}
                             height={32}
                             alt="Event"
