@@ -32,18 +32,18 @@ export default function DecisionNode({ data }: NodeProps<DecisionNodeProps>) {
       </div>
 
       <Handle
-        type="source"
+        type="target"
         position={Position.Left}
         style={{ left: '0', top: '50%' }}
       />
       <Handle
-        type="target"
+        type="source"
         position={Position.Top}
         id="true"
         style={{ left: '50%', top: '0' }}
       />
       <Handle
-        type="target"
+        type="source"
         position={Position.Bottom}
         id="false"
         style={{ left: '50%', top: '85%' }}
