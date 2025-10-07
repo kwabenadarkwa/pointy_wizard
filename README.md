@@ -39,3 +39,6 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [ ] we might probaly have to write an lsp for the pointy syntax in order to find some kind of syntax errors
 - [ ] remember to the make the background variant something that you can edit and change in the settings
       it infront of it
+- [ ] think of copy and past functionality
+- [ ] 
+     
