@@ -26,7 +26,6 @@ export default function BottomControlCenter({
         actions?.onEventClick?.(name);
         setIsEventCreationPopUpOpen(false);
     };
-    //TODO: selected event Type is what would determine what image that we show at the event section
 
     return (
         <div>

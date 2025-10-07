@@ -1,4 +1,4 @@
-import { type ReactFlowInstance, Position } from '@xyflow/react';
+import { type ReactFlowInstance, Position, type Node } from '@xyflow/react';
 
 export const createEventNode = (
     reactFlowInstance: ReactFlowInstance,
@@ -18,7 +18,7 @@ export const createEventNode = (
         label.length * charWidth + padding
     );
     
-    const newNode = {
+    const newNode: Node = {
         id,
         position: {
             x: 0,

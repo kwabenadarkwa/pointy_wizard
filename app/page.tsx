@@ -13,15 +13,28 @@ import {
     type Connection,
     useReactFlow,
     addEdge,
+    NodeTypes,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import BottomControlCenter from './_components/bottomControlCenter/bottomControlCenter';
+import DecisionNode from './_components/customNodes/decisionNode';
 import { createEventNode } from './_utils/createEventNode';
 
-const initialNodes: Node[] = [];
+const initialNodes: Node[] = [
+    {
+        id: '1',
+        type: 'decisionNode',
+        position: { x: 100, y: 100 },
+        data: { label: 'this is the thing' },
+    },
+];
 const initialEdges: Edge[] = [];
 
 function Canvas() {
+    const nodeTypes:NodeTypes = {
+        decisionNode: DecisionNode,
+    };
+
     const [nodes, , onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
@@ -48,6 +61,7 @@ function Canvas() {
                 colorMode="light"
                 nodes={nodes}
                 edges={edges}
+                nodeTypes={nodeTypes}
                 onNodesChange={onNodesChange}
                 onEdgesChange={onEdgesChange}
                 onConnect={onConnect}

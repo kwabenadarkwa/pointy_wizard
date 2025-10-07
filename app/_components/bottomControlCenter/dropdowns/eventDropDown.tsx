@@ -19,8 +19,6 @@ interface EventDropDownProps {
     setEventSelectedOnBottomControlPanel?: (eventName: EventName) => void;
 }
 
-//should get the thing currently selected and highlight it
-// this should share the same state in terms of the image showing as the bottom control center
 export default function EventDropDown({
     className: className,
     eventSelected,
