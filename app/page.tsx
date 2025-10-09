@@ -1,5 +1,5 @@
 'use client';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import {
   ReactFlowProvider,
   ReactFlow,
@@ -19,6 +19,8 @@ import '@xyflow/react/dist/style.css';
 import BottomControlCenter from './_components/bottomControlCenter/bottomControlCenter';
 import DecisionNode from './_components/customNodes/decisionNode';
 import { createEventNode } from './_utils/createEventNode';
+import { getNodeId } from './_utils/getNodeId';
+// import DEBOUNCE_TIME_FOR_STORE_UPDATE from './constants';
 
 const initialNodes: Node[] = [];
 const initialEdges: Edge[] = [];
@@ -28,19 +30,29 @@ function Canvas() {
     decisionNode: DecisionNode,
   };
 
+  //TODO: this key should be changed based on what the pipeline the user is working with
+  const storage_key = 'pipeline';
+
   const [nodes, , onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
-  let nodeId = 0;
   const reactFlowInstance = useReactFlow();
 
   const onEventNameGiven = useCallback(
     (name: string, type: string) => {
-      const id = `${++nodeId}`;
+      const id = getNodeId();
       createEventNode(reactFlowInstance, type, name, id);
     },
-    [nodeId, reactFlowInstance]
+    [reactFlowInstance]
   );
+
+  //TODO: when you add the portion that does the storage remember to have a global store that holds the data for the particular pipeline
+  useEffect(() => {
+    localStorage.setItem(
+      storage_key,
+      JSON.stringify(reactFlowInstance.toObject())
+    );
+  }, [nodes, edges, reactFlowInstance]);
 
   const onConnect = useCallback(
     (params: Connection) =>

@@ -16,7 +16,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## TODO
 
-- [ ] create a global store that holds the node data in the memory of the browser
+- [ ] create a global store that holds the node data in the memory of the browser(localStorage would be useful for something like this)[link](https://react.dev/reference/react/useSyncExternalStore) might be useful for my use case
+- [ ] create all the panels that are supposed to be on the canvas for actions to be done
 - [ ] save functionality that saves the result of the pipeline onto the users pc or something of the sort. think of what format you want to save the results in. which means I'm going to have to have some zustand state management where I'm going to keep everything and then dump it into the json file.
 
 ### Done
