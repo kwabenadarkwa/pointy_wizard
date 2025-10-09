@@ -20,7 +20,7 @@ import BottomControlCenter from './_components/bottomControlCenter/bottomControl
 import DecisionNode from './_components/customNodes/decisionNode';
 import { createEventNode } from './_utils/createEventNode';
 import { getNodeId } from './_utils/getNodeId';
-// import DEBOUNCE_TIME_FOR_STORE_UPDATE from './constants';
+import { DEBOUNCE_TIME_FOR_STORE_UPDATE } from './constants';
 
 const initialNodes: Node[] = [];
 const initialEdges: Edge[] = [];
@@ -33,7 +33,7 @@ function Canvas() {
   //TODO: this key should be changed based on what the pipeline the user is working with
   const storage_key = 'pipeline';
 
-  const [nodes, , onNodesChange] = useNodesState(initialNodes);
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
   const reactFlowInstance = useReactFlow();
@@ -45,20 +45,36 @@ function Canvas() {
     },
     [reactFlowInstance]
   );
-
-  //TODO: when you add the portion that does the storage remember to have a global store that holds the data for the particular pipeline
-  useEffect(() => {
-    localStorage.setItem(
-      storage_key,
-      JSON.stringify(reactFlowInstance.toObject())
-    );
-  }, [nodes, edges, reactFlowInstance]);
-
   const onConnect = useCallback(
     (params: Connection) =>
       setEdges((edgesSnapshot) => addEdge(params, edgesSnapshot)),
     [setEdges]
   );
+
+  //TODO: when you add the portion that does the storage remember to have a global store that holds the data for the particular pipeline
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      const flow = reactFlowInstance.toObject();
+      localStorage.setItem(storage_key, JSON.stringify(flow));
+    }, DEBOUNCE_TIME_FOR_STORE_UPDATE);
+
+    return () => clearTimeout(timeoutId);
+  }, [nodes, edges, reactFlowInstance]);
+
+  const onRestore = useCallback(() => {
+    const restoreFlow = async () => {
+      const flow = JSON.parse(localStorage.getItem(storage_key) || '');
+
+      if (flow) {
+        const { x = 0, y = 0, zoom = 1 } = flow.viewport;
+        setNodes(flow.nodes || []);
+        setEdges(flow.edges || []);
+        reactFlowInstance.setViewport({ x, y, zoom });
+      }
+    };
+
+    restoreFlow();
+  }, [setEdges, setNodes, reactFlowInstance]);
 
   return (
     <div className="h-screen w-screen">
@@ -70,6 +86,7 @@ function Canvas() {
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
+        onInit={onRestore}
         fitView
       >
         <BottomControlCenter
