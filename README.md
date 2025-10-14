@@ -12,6 +12,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 - [ ] write tests for the comipiling process and what accompnnying pointy syntax it should produce
 - [ ] create a means to compile the diagram syntax to pointy lang
+- [ ] make sure that when you're creating a node with a label it is impossible to have a node that has a label that has already been created
 - [ ] figure out how to embed a text editor in the canvas
 
 ### Done
