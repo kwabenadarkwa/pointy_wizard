@@ -1,4 +1,6 @@
 'use client';
+
+import Image from 'next/image';
 import { useCallback, useEffect } from 'react';
 import {
   ReactFlowProvider,
@@ -14,6 +16,7 @@ import {
   useReactFlow,
   addEdge,
   NodeTypes,
+  Panel,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import BottomControlCenter from './_components/bottomControlCenter/bottomControlCenter';
@@ -89,6 +92,22 @@ function Canvas() {
         onInit={onRestore}
         fitView
       >
+        <Panel
+          position="top-left"
+          className="bg-[#313E6F] rounded-md text-xs p-1 text-white "
+        >
+          Events Hub
+        </Panel>
+
+        <Panel position="top-right">
+          <Image
+            src="/dock_to_right.svg"
+            width={24}
+            height={24}
+            alt="Drop Down"
+            className=""
+          />
+        </Panel>
         <BottomControlCenter
           actions={{
             onEventClick: onEventNameGiven,

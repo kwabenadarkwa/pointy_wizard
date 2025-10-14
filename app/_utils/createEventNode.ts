@@ -33,7 +33,9 @@ export const createEventNode = (
       },
       type: type,
     };
-  } else {
+  }
+    //TODO: need to set up a type here to make things easier when converting to pionty lang
+    else {
     newNode = {
       id,
       position: {

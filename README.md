@@ -1,4 +1,4 @@
-## Pointy Wizard
+# Pointy Wizard
 
 To check out the project, run the following command:
 
@@ -8,29 +8,26 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## TO NOTE
-
-- the way nodes are created is by creating objects so I'm going to have to come up with a way to save the nodes that
-  are created by the user for a particular pipeline.
-- I need a specific way to store nodes and edges for a particular pipeline.
-
 ## TODO
 
-- [ ] create a global store that holds the node data in the memory of the browser(localStorage would be useful for something like this)[link](https://react.dev/reference/react/useSyncExternalStore) might be useful for my use case
-- [ ] create all the panels that are supposed to be on the canvas for actions to be done
-- [ ] save functionality that saves the result of the pipeline onto the users pc or something of the sort. think of what format you want to save the results in. which means I'm going to have to have some zustand state management where I'm going to keep everything and then dump it into the json file.
+- [ ] write tests for the comipiling process and what accompnnying pointy syntax it should produce
+- [ ] create a means to compile the diagram syntax to pointy lang
+- [ ] figure out how to embed a text editor in the canvas
 
 ### Done
 
 - [x] make it such that when the diamond is clicked the correct node is selected
+- [x] create all the panels that are supposed to be on the canvas for actions to be done
 - [x] I have to think about what I'm going to be using to delete nodes that are created by the user
 - [x] create a custom node for the decision node
 - [x] the control pane that holds all the things you could select seems to be behing the canvas, think of how you can bring
 - [x] create behaviour for the onEventClick
 - [x] create a custom node that has the </Handle> on the right of it. for now there's no need to have a custom versino
+- [x] create a global store that holds the node data in the memory of the browser(localStorage would be useful for something like this)[link](https://react.dev/reference/react/useSyncExternalStore) might be useful for my use case
 
 ### Backlog
 
+- [ ] save functionality that saves the result of the pipeline onto the users pc or something of the sort. think of what format you want to save the results in. which means I'm going to have to have some zustand state management where I'm going to keep everything and then dump it into the json file.
 - [ ] create behaviour for the onConnectionClick
 - [ ] create behaviour for the onExtrasClick
 - [ ] there would also be a need to create a custom edge file that has all the edges with the different implementations
@@ -43,4 +40,3 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [ ] remember to the make the background variant something that you can edit and change in the settings
       it infront of it
 - [ ] think of copy and past functionality
-- [ ]

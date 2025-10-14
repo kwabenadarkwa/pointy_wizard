@@ -1,0 +1,1 @@
+- after finding the nodes that we want to run we need to know what they are connected to and what type of connection we have in order to create the connectino between them
